@@ -1,0 +1,460 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "GDP API",
+    "description": "Restful API for GDP System",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/sale": {
+      "get": {
+        "summary": "List the sale record",
+        "description": "Returns customer name, list of product and price.",
+        "x-swagger-router-controller": "Sale",
+        "tags": [
+          "Sale"
+        ],
+        "operationId": "listSale",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SaleModel"
+              }
+            }
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "put": {
+        "summary": "Save sale record",
+        "description": "Add a new sale record",
+        "x-swagger-router-controller": "Sale",
+        "tags": [
+          "Sale"
+        ],
+        "operationId": "saveSale",
+        "parameters": [{
+          "name": "saleObject",
+          "in": "body",
+          "description": "Sale object",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/SaleModel"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "delete": {
+        "summary": "Delete sale record",
+        "description": "Remove a sale record from database",
+        "x-swagger-router-controller": "Sale",
+        "tags": [
+          "Sale"
+        ],
+        "operationId": "removeSale",
+        "parameters": [{
+          "name": "saleId",
+          "in": "body",
+          "description": "Sale id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      }
+    },
+
+    "/api/price": {
+      "get": {
+        "summary": "List the price record",
+        "description": "Returns product id, quantity and price.",
+        "x-swagger-router-controller": "Price",
+        "tags": [
+          "Sale"
+        ],
+        "operationId": "listPrice",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PriceModel"
+              }
+            }
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "put": {
+        "summary": "Save price record",
+        "description": "Add a new price record",
+        "x-swagger-router-controller": "Price",
+        "tags": [
+          "Sale"
+        ],
+        "operationId": "savePrice",
+        "parameters": [{
+          "name": "priceObject",
+          "in": "body",
+          "description": "Price object",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/PriceModel"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "delete": {
+        "summary": "Delete price record",
+        "description": "Remove a price record from database",
+        "x-swagger-router-controller": "Price",
+        "tags": [
+          "Sale"
+        ],
+        "operationId": "removePrice",
+        "parameters": [{
+          "name": "priceId",
+          "in": "body",
+          "description": "Price id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      }
+    },
+
+    "/api/price/calculation": {
+      "post": {
+        "summary": "Calculate price",
+        "description": "Calculate price based on price record",
+        "x-swagger-router-controller": "PriceCalculation",
+        "tags": [
+          "Sale"
+        ],
+        "operationId": "calculatePrice",
+        "parameters": [{
+          "name": "priceCalculationObject",
+          "in": "body",
+          "description": "Price calculation object",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/PriceCalculationModel"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      }
+    },
+
+    "/api/customer": {
+      "get": {
+        "summary": "List the customer record",
+        "description": "Returns list of customer name.",
+        "x-swagger-router-controller": "Customer",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "listCustomer",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerModel"
+              }
+            }
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "put": {
+        "summary": "Save customer record",
+        "description": "Add a new customer record",
+        "x-swagger-router-controller": "Customer",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "saveCustomer",
+        "parameters": [{
+          "name": "customerObject",
+          "in": "body",
+          "description": "Customer object",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/CustomerModel"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "delete": {
+        "summary": "Delete customer record",
+        "description": "Remove a customer record from database",
+        "x-swagger-router-controller": "Customer",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "removeCustomer",
+        "parameters": [{
+          "name": "customerId",
+          "in": "body",
+          "description": "Customer id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      }
+    },
+
+    "/api/product": {
+      "get": {
+        "summary": "List the product record",
+        "description": "Returns list of product name.",
+        "x-swagger-router-controller": "Product",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "listProduct",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductModel"
+              }
+            }
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "put": {
+        "summary": "Save product record",
+        "description": "Add a new product record",
+        "x-swagger-router-controller": "Product",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "saveProduct",
+        "parameters": [{
+          "name": "productObject",
+          "in": "body",
+          "description": "Product object",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/ProductModel"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "delete": {
+        "summary": "Delete product record",
+        "description": "Remove a product record from database",
+        "x-swagger-router-controller": "Product",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "removeProduct",
+        "parameters": [{
+          "name": "productId",
+          "in": "body",
+          "description": "Product id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SaleModel": {
+      "required": [
+        "customer",
+        "productIds",
+        "price"
+      ],
+      "properties": {
+        "customer": {
+          "type": "string"
+        },
+        "productIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "price": {
+          "type": "number"
+        }
+      }
+    },
+    "PriceModel": {
+      "required": [
+        "customerName",
+        "productId",
+        "type",
+        "quantity",
+        "price"
+      ],
+      "properties": {
+        "customerName": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "price": {
+          "type": "number"
+        }
+      }
+    },
+    "PriceCalculationModel": {
+      "required": [
+        "customerName",
+        "products"
+      ],
+      "properties": {
+        "customerName": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CustomerModel": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductModel": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "Restful API for qds portal",
+  "main": "index.js",
+  "keywords": [
+    "swagger"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "commander": "^2.9.0",
+    "connect": "^3.2.0",
+    "cors": "^2.7.1",
+    "deferred": "^0.7.5",
+    "node-xlsx": "^0.7.1",
+    "nodedb": "../nodedb",
+    "swagger-tools": "^0.9.10"
+  }
+}
